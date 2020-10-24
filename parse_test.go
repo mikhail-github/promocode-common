@@ -7,8 +7,9 @@ import (
 )
 
 const (
-	adidasPromocode = `U20-KKLR-Z2GW-RTWG-XZZXM`
-	reebokPromocode = `CMFN-RKMB-W3GW-9KD6`
+	adidasPromocode  = `U20-KKLR-Z2GW-RTWG-XZZXM`
+	adidasPromocode2 = `U20-7PXK-FL2D-TXWB-T6LB3`
+	reebokPromocode  = `CMFN-RKMB-W3GW-9KD6`
 )
 
 func TestParse(t *testing.T) {
