@@ -1,4 +1,4 @@
-package promocode
+package common
 
 func Merge(promocodes, new []Promocode) []Promocode {
 	for _, newP := range new {

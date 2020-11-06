@@ -1,8 +1,9 @@
-package promocode
+package common
 
 const (
-	AdidasShopID PromocodeShopID = "adidas"
-	Adidas20     PromocodeType   = "20%"
+	PromoBotDBName                 = "PromocodeBot"
+	AdidasShopID   PromocodeShopID = "adidas"
+	Adidas20       PromocodeType   = "20%"
 
 	ReebokShopID PromocodeShopID = "reebok"
 	Reebok20     PromocodeType   = "20%"
@@ -10,6 +11,9 @@ const (
 	promocodeNamedRegexp    = `promocode`
 	adidasPromocodeRegexp20 = `(^|\s+)(?P<promocode>U20-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{5})($|\s+)`
 	reebokPromocodeRegexp20 = `(^|\s+)(?P<promocode>[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4})($|\s+)`
+
+	ErrorDynamoDBIDNotFound = "id not found"
+	ErrorPromocodeNotFound  = "promocode not found"
 )
 
 var (

@@ -1,4 +1,4 @@
-package promocode
+package common
 
 import (
 	"fmt"
