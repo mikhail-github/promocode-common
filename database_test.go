@@ -9,6 +9,7 @@ import (
 	"github.com/aws/aws-sdk-go/service/dynamodb/dynamodbiface"
 )
 
+//
 type mockDynamoDBClientEmpty struct {
 	dynamodbiface.DynamoDBAPI
 }
@@ -33,8 +34,22 @@ func TestGet(t *testing.T) {
 		mock := &mockDynamoDBClientEmpty{}
 		db := DB{Client: mock}
 		shop := AdidasShopID
+
 		promo, err := db.Get(&shop, nil)
 		if promo != nil || err.Error() != ErrorPromocodeNotFound {
+			t.Logf("Expected nil, got: %+v\n error expected: %s, got: %s",
+				promo, ErrorPromocodeNotFound, err.Error())
+			t.Fail()
+		}
+	})
+
+	t.Run("List promocodes from empty db", func(t *testing.T) {
+		mock := &mockDynamoDBClientEmpty{}
+		db := DB{Client: mock}
+
+		promocodes, err := db.List()
+		if len(promocodes) != 0 || err != nil {
+			t.Logf("Expected: nil, got: %s\n Error expected nil, got: %v", promocodes, err)
 			t.Fail()
 		}
 	})
