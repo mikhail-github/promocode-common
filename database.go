@@ -27,7 +27,8 @@ func (db *DB) Get(shopId *PromocodeShopID, promoType *PromocodeType) (*Promocode
 	// collect promocodes for particular shop to slice
 	var shopPromocodes []Promocode
 	for _, p := range dbPromocodes {
-		if shopId != nil && p.ShopID == *shopId && promoType != nil && p.Type == *promoType {
+		if (shopId == nil || shopId != nil && p.ShopID == *shopId) &&
+			(promoType == nil || promoType != nil && p.Type == *promoType) {
 			shopPromocodes = append(shopPromocodes, p)
 		}
 	}
@@ -91,7 +92,6 @@ func (db *DB) Delete(promo *Promocode) error {
 			savePromocodes = append(savePromocodes, p)
 		}
 	}
-	savePromocodes = append(savePromocodes, *promo)
 
 	// save promocodes to DB
 	if err := db.save(savePromocodes); err != nil {
@@ -137,6 +137,7 @@ func (db *DB) read() ([]Promocode, error) {
 		return nil, err
 	}
 
+	// fmt.Printf("read: %+v\n", promocodes)
 	return promocodes, nil
 }
 
@@ -150,5 +151,6 @@ func (db *DB) save(promocodes []Promocode) error {
 	client := Client{DynamoDB: db.Client}
 	err = client.DynamoDBPut(db.TableName, db.Prefix+PromoBotDBName, string(jbyte))
 
+	// fmt.Printf("save: %+v\n", promocodes)
 	return err
 }
