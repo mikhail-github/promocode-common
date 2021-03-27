@@ -10,7 +10,8 @@ const (
 
 	promocodeNamedRegexp    = `promocode`
 	adidasPromocodeRegexp20 = `(^|\s+)(?P<promocode>U20-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{5})($|\s+)`
-	reebokPromocodeRegexp20 = `(^|\s+)(?P<promocode>[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4})($|\s+)`
+	// reebokPromocodeRegexp20 = `(^|\s+)(?P<promocode>[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4})($|\s+)`
+	reebokPromocodeRegexp20 = `(^|\s+)(?P<promocode>[A-Z0-9]{7}-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{5})($|\s+)`
 
 	ErrorDynamoDBIDNotFound = "id not found"
 	ErrorPromocodeNotFound  = "promocode not found"
